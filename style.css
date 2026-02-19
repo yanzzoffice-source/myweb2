@@ -1,0 +1,329 @@
+/* --- GLOBAL VARIABLES & RESET --- */
+:root {
+    --bg-color: #050505;
+    --main-green: #00ff41;
+    --dim-green: #008f11;
+    --text-color: #e0e0e0;
+    --font-hacker: 'Courier New', Courier, monospace;
+    --neon-glow: 0 0 10px var(--main-green), 0 0 20px var(--main-green);
+    --box-shadow: 0 0 5px var(--dim-green);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-hacker);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- UTILITIES --- */
+.hidden { display: none !important; }
+.center-text { text-align: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+
+/* Separator Lines */
+.separator {
+    width: 80%;
+    max-width: 600px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--main-green), transparent);
+    margin: 20px auto;
+    box-shadow: var(--neon-glow);
+    opacity: 0.7;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3 {
+    color: var(--main-green);
+    text-transform: uppercase;
+    letter-spacing: 2px;    text-shadow: var(--neon-glow);
+}
+
+.hacker-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    animation: glitch-text 3s infinite;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    color: var(--dim-green);
+    margin-top: 30px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* --- ANIMATED PROFILE (LOGO M + MATA) --- */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-svg {
+    width: 100px;
+    height: 100px;
+    fill: none;
+    stroke: var(--main-green);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 5px var(--main-green));
+    animation: pulse-glow 2s infinite alternate;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--main-green);
+    text-shadow: var(--neon-glow);
+    margin-top: 5px;
+    /* Zigzag effect simulated with skew/rotate if needed, keeping simple for readability */
+    letter-spacing: 3px;
+}
+
+/* --- ANIMATED TEXT COLUMN --- */
+.anim-text-box {
+    width: 90%;
+    max-width: 500px;    min-height: 60px;
+    border: 1px solid var(--dim-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    padding: 10px;
+    background: rgba(0, 20, 0, 0.5);
+    box-shadow: inset 0 0 10px var(--dim-green);
+    position: relative;
+    overflow: hidden;
+}
+
+.anim-text-content {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--main-green);
+    text-align: center;
+    animation: fade-slide 0.5s ease-in-out;
+}
+
+.whatsapp-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    fill: var(--main-green);
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* --- BUTTONS & INPUTS --- */
+.btn-cyber {
+    background: transparent;
+    border: 1px solid var(--main-green);
+    color: var(--main-green);
+    padding: 10px 20px;
+    font-family: var(--font-hacker);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    box-shadow: 0 0 5px var(--dim-green);
+    margin: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cyber:hover {
+    background: var(--main-green);
+    color: black;    box-shadow: var(--neon-glow);
+}
+
+.btn-cyber:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 2px var(--dim-green);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.input-cyber {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--dim-green);
+    color: var(--main-green);
+    padding: 12px;
+    font-family: var(--font-hacker);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-cyber:focus {
+    border-color: var(--main-green);
+    box-shadow: var(--neon-glow);
+}
+
+/* Neon Border Animation around Input */
+.neon-border-animate {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid transparent;
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+.input-cyber:focus ~ .neon-border-animate {
+    border-color: var(--main-green);
+    animation: border-flow 2s linear infinite;
+    box-shadow: var(--neon-glow);
+}
+
+/* --- GRIDS (Responsive) --- */
+.grid-container {
+    display: grid;    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+}
+
+/* Menu Grid: 2 columns on mobile, up to 5 on desktop if needed, but requested 2x5 layout */
+.grid-menu {
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+/* Price Grid: 2 columns */
+.grid-price {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Payment Grid: 3 columns on mobile, more on desktop */
+.grid-payment {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card-box {
+    border: 1px solid var(--dim-green);
+    padding: 15px;
+    text-align: center;
+    background: rgba(0, 10, 0, 0.3);
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.card-box:hover {
+    border-color: var(--main-green);
+    box-shadow: var(--neon-glow);
+    transform: translateY(-2px);
+}
+
+.card-box:active {
+    transform: scale(0.95);
+}
+
+.payment-logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    object-fit: contain;}
+
+.payment-name {
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+
+/* --- LOGIN SPECIFIC --- */
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    width: 100%;
+}
+
+.eye-logo-large {
+    width: 150px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation: blink-eye 4s infinite;
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-shadow: 0 0 5px red;
+    min-height: 20px;
+}
+
+/* --- ANIMATIONS KEYFRAMES --- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+    from { filter: drop-shadow(0 0 2px var(--dim-green)); }
+    to { filter: drop-shadow(0 0 10px var(--main-green)); }
+}
+
+@keyframes glitch-text {
+    0% { text-shadow: 2px 0 red, -2px 0 blue; }
+    5% { text-shadow: 2px 0 red, -2px 0 blue; }
+    6% { text-shadow: none; }
+    100% { text-shadow: none; }
+}
+@keyframes fade-slide {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink-eye {
+    0%, 48%, 52%, 100% { opacity: 1; }
+    50% { opacity: 0.2; } /* Blink */
+}
+
+@keyframes border-flow {
+    0% { clip-path: inset(0 100% 0 0); }
+    25% { clip-path: inset(0 0 100% 0); }
+    50% { clip-path: inset(0 0 0 100%); }
+    75% { clip-path: inset(100% 0 0 0); }
+    100% { clip-path: inset(0 100% 0 0); }
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (min-width: 768px) {
+    .grid-menu { grid-template-columns: repeat(2, 1fr); max-width: 400px; } /* Keep 2 cols as requested */
+    .grid-price { grid-template-columns: repeat(3, 1fr); max-width: 600px; }
+    .grid-payment { grid-template-columns: repeat(6, 1fr); max-width: 800px; }
+    
+    .hacker-title { font-size: 3rem; }
+    .logo-svg { width: 150px; height: 150px; }
+    .logo-text { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+    .grid-payment { grid-template-columns: repeat(3, 1fr); } /* 3 per row on mobile */
+    .card-box { padding: 10px; min-height: 70px; }
+    .payment-logo { width: 30px; height: 30px; }
+    .payment-name { font-size: 0.7rem; }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MIWA'S PANEL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- Animated Eye Logo -->
+        <svg class="eye-logo-large" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow-eye">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <!-- Eyes -->
+            <path d="M20,60 Q60,20 100,60 T180,60" fill="none" stroke="#00ff41" stroke-width="3" filter="url(#glow-eye)" />
+            <path d="M20,60 Q60,100 100,60 T180,60" fill="none" stroke="#00ff41" stroke-width="3" filter="url(#glow-eye)" />
+            <!-- Mouth/Teeth -->
+            <path d="M40,90 L50,110 L60,90 L70,110 L80,90 L90,110 L100,90 L110,110 L120,90 L130,110 L140,90 L150,110 L160,90" fill="none" stroke="#00ff41" stroke-width="3" filter="url(#glow-eye)" />
+        </svg>
+
+        <h1 class="hacker-title">MIWA'S PANEL</h1>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" class="input-cyber" placeholder="USERNAME" autocomplete="off" required>
+                <div class="neon-border-animate"></div>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" class="input-cyber" placeholder="PASSWORD" required>
+                <div class="neon-border-animate"></div>
+            </div>
+            <button type="submit" class="btn-cyber" style="width: 100%; max-width: 300px;">ACCESS SYSTEM</button>
+            <p id="error-msg" class="error-msg center-text"></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
